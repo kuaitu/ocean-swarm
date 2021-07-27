@@ -1,0 +1,28 @@
+server:
+  servlet:
+    application-display-name: oc-auth-app
+    context-path: /${server.servlet.application-display-name}
+  port: 7070
+
+spring:
+  application:
+    name: ${server.servlet.application-display-name}
+  cloud:
+    nacos:
+      discovery:
+        namespace: public
+        password: nacos
+        server-addr: lin:8848
+        username: nacos
+  datasource:
+    url: jdbc:mysql://lin:3306/ocean?serverTimezone=UTC&characterEncoding=utf-8
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  data:
+    mongodb:
+      host: lin
+      port: 27017
+      database: ocean
+      username: root
+      password:

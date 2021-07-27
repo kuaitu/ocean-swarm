@@ -1,0 +1,6 @@
+spring:
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://lin:3306/ocean?serverTimezone=UTC&characterEncoding=utf-8
+        username: root
+        password: root
