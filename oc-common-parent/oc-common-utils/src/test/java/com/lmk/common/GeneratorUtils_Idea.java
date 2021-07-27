@@ -244,7 +244,7 @@ public class GeneratorUtils_Idea {
 				@Override
 				public String outputFile(TableInfo tableInfo) {
 					return projectPath.getClientProjectPath() + "/src/main/java/" + StringUtils.join(packageInfo, "/")
-							+ "/" + "AuthClientAutoConfiguration"
+							+ "/" + captureName(packageInfo[2]) + "RpcAutoConfiguration"
 							+ StringPool.DOT_JAVA;
 				}
 			});
@@ -266,6 +266,13 @@ public class GeneratorUtils_Idea {
                             + StringPool.DOT_JAVA;
                 }
             });
+
+            focList.add(new FileOutConfig(preTestFilePath + "spring.factories.ftl") {
+                @Override
+                public String outputFile(TableInfo tableInfo) {
+                    return projectPath.getClientProjectPath() + "/src/main/resources/META-INF/spring.factories";
+                }
+            });
         }
 
         cfg.setFileOutConfigList(focList);
@@ -276,6 +283,9 @@ public class GeneratorUtils_Idea {
                     return true; // entity默认要覆盖
                 }
                 if (s.contains("entity")) {
+                    return true;
+                }
+                if (s.contains("factories")) {
                     return true;
                 }
                 if (new File(s).exists()) {
@@ -314,6 +324,12 @@ public class GeneratorUtils_Idea {
         mpg.setStrategy(strategy);
         mpg.setTemplateEngine(new MyFreemarkerTemplateEngine(packageName)); // 自定义输出模板设置
         mpg.execute();
+    }
+
+    private static String captureName(String name) {
+        char[] cs=name.toCharArray();
+        cs[0]-=32;
+        return String.valueOf(cs);
     }
 
     @SuppressWarnings("unchecked")

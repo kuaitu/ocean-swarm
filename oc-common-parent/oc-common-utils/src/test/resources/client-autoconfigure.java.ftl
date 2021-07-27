@@ -21,10 +21,12 @@ import ${superControllerClassPackage};
  * @author ${author}
  * @since ${date}
  */
+<#assign packagePath="${package.Controller?substring(0,package.Controller?last_index_of(package.ModuleName) - 1)}"/>
+<#assign packageName="${(packagePath?substring(packagePath?last_index_of('.') + 1))?cap_first}"/>
 @Configuration
 @ComponentScan("${(package.Controller?substring(0,package.Controller?replace('.controller','')?last_index_of('.'))) + ".*.rpc"}")
 @EnableFeignClients("${(package.Controller?substring(0,package.Controller?replace('.controller','')?last_index_of('.'))) + ".*.rpc"}")
-public class AuthClientAutoConfiguration {
+public class ${packageName}RpcAutoConfiguration {
 	@Bean
 	@ConditionalOnClass({ EnableFeginTokenPassThrough.class })
 	public FeignInterceptor feignInterceptor() {
