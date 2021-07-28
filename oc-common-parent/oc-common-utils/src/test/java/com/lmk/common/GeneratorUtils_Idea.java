@@ -10,7 +10,10 @@ import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.FileType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
-import com.lmk.common.utils.*;
+import com.lmk.common.utils.EnumProject;
+import com.lmk.common.utils.EnumPublicColumn;
+import com.lmk.common.utils.MyFreemarkerTemplateEngine;
+import com.lmk.common.utils.ProjectPath;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
@@ -283,9 +286,6 @@ public class GeneratorUtils_Idea {
                     return true; // entity默认要覆盖
                 }
                 if (s.contains("entity")) {
-                    return true;
-                }
-                if (s.contains("factories")) {
                     return true;
                 }
                 if (new File(s).exists()) {
