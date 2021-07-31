@@ -1,12 +1,9 @@
 server:
-  servlet:
-    application-display-name: oc-auth-app
-    context-path: /${server.servlet.application-display-name}
   port: 7070
 
 spring:
   application:
-    name: ${server.servlet.application-display-name}
+    name: oc-auth
   cloud:
     nacos:
       discovery:
@@ -33,7 +30,7 @@ mybatis-plus:
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
-    banner: false
+    banner: true
     db-config:
       table-underline: true
       logic-not-delete-value: 0
