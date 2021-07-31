@@ -1,20 +1,13 @@
 package com.lmk.auth.biz.api;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.List;
-
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.lmk.auth.biz.entity.Classroom;
 import com.lmk.common.rdbms.vo.PageQuery;
 import com.lmk.common.rdbms.vo.Ret;
-import com.lmk.auth.biz.entity.Classroom;
-
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * <p>
@@ -52,7 +45,7 @@ public interface ClassroomApi{
 	Ret<Void> deleteById(@RequestParam("id") Integer id);
 
 	@ApiOperation("查询所有教室记录")
-	@PostMapping("/findAll.do")
+	@GetMapping("/findAll.do")
 	@ResponseBody 
 	Ret<List<Classroom>> findAll();
 }

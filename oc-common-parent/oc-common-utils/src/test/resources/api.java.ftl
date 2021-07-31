@@ -1,13 +1,8 @@
 package ${(package.Controller?substring(0,package.Controller?last_index_of('.'))) + ".api"};
 
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import java.util.List;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.lmk.common.rdbms.vo.PageQuery;
@@ -37,7 +32,7 @@ public interface ${table.controllerName} extends ${superControllerClass}<${entit
 public interface ${table.entityName + "Api"}{
   </#if>
 	@ApiOperation("分页查询${table.comment!}记录")
-	@PostMapping("/search.do")
+	@GetMapping("/search.do")
 	@ResponseBody
 	Ret<IPage<${entity}>> search(@RequestBody PageQuery<${entity}> q);
 
@@ -62,7 +57,7 @@ public interface ${table.entityName + "Api"}{
 	Ret<Void> deleteById(@RequestParam("id") Integer id);
 
 	@ApiOperation("查询所有${table.comment!}记录")
-	@PostMapping("/findAll.do")
+	@GetMapping("/findAll.do")
 	@ResponseBody 
 	Ret<List<${entity}>> findAll();
 }

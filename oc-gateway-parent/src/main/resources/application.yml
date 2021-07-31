@@ -1,0 +1,22 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: oc-gateway
+  cloud:
+    nacos:
+      discovery:
+        namespace: public
+        password: nacos
+        server-addr: lin:8848
+        username: nacos
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: oc-auth-service
+          uri: lb://oc-auth
+          predicates:
+            - Path=/biz/**
+
