@@ -6,6 +6,8 @@ import com.lmk.auth.auth.entity.User;
 import com.lmk.auth.auth.service.IUserService;
 import com.lmk.common.rdbms.vo.PageQuery;
 import com.lmk.common.rdbms.vo.Ret;
+import com.lmk.conf.sys.entity.Dictionary;
+import com.lmk.conf.sys.rpc.DictionaryRpc;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,9 @@ public class UserController implements UserApi{
  
 	@Autowired
 	private IUserService service;
+
+	@Autowired
+	private DictionaryRpc dictionaryRpc;
 
 	@ApiOperation("分页查询用户表记录")
 	@Override
@@ -71,6 +76,8 @@ public class UserController implements UserApi{
 	@ApiOperation("查询所有用户表记录")
 	@Override
 	public Ret<List<User>> findAll() {
+		Ret<List<Dictionary>> all = dictionaryRpc.findAll();
+		System.out.println(all);
 		return Ret.ok(service.list());
 	}
 }

@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: oc-auth
+  main:
+    allow-bean-definition-overriding: true
   cloud:
     nacos:
       discovery:

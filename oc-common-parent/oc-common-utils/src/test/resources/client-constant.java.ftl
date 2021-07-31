@@ -11,5 +11,5 @@ package ${(package.Controller?substring(0,package.Controller?replace('.controlle
  */
 public interface Constants {
 	//TODO:修改成对应服务名
-	String AUTH_SERVICE_NAME = "<#if packageName??>/${packageName}</#if>";
+	String AUTH_SERVICE_NAME = "<#if packageName??>${packageName}</#if>";
 }

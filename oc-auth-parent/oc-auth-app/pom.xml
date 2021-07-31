@@ -66,6 +66,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>com.lmk.conf</groupId>
+            <version>0.0.1-SNAPSHOT</version>
+            <artifactId>oc-conf-rpc</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

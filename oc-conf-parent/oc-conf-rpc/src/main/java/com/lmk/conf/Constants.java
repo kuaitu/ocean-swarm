@@ -11,5 +11,5 @@ package com.lmk.conf;
  */
 public interface Constants {
 	//TODO:修改成对应服务名
-	String AUTH_SERVICE_NAME = "/oc-conf";
+	String AUTH_SERVICE_NAME = "oc-conf";
 }

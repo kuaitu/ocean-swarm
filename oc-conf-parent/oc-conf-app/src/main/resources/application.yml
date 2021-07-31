@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: oc-conf
+  main:
+    allow-bean-definition-overriding: true
   cloud:
     nacos:
       discovery:
