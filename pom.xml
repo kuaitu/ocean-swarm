@@ -13,6 +13,7 @@
         <module>oc-auth-parent</module>
         <module>oc-gateway-parent</module>
         <module>oc-common-parent</module>
+        <module>oc-conf-parent</module>
     </modules>
 
     <distributionManagement>

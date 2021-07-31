@@ -49,8 +49,8 @@ public class GeneratorUtils_Idea {
      * 选择项目
      **/
     public static String chooseProject(String nowProjectPath) {
-        List<String> excludeProjects = Arrays.asList("common-parent", "gateway", "registry",
-                ".git", ".gitignore", "HELP.md", ".idea", "README.md");
+        List<String> excludeProjects = Arrays.asList("common-parent", "gateway-parent", ".README_images",
+                ".git", ".gitignore", "HELP.md", ".idea", "README.md", "pom.xml");
         String parentFilePath[] = Arrays.stream(new File(nowProjectPath).list())
                 .filter(projectName -> {
                     String name = projectName.substring(projectName.indexOf("-") + 1);
@@ -418,7 +418,8 @@ public class GeneratorUtils_Idea {
         return db.query("SELECT TABLE_NAME as tableName, TABLE_COMMENT as tableComment" //
                         + " FROM information_schema.Tables " //
                         + "WHERE TABLE_SCHEMA = '" + datasouceConfig.getSchemaName() + "' " //
-                        + " AND INSTR(TABLE_NAME, 'qrtz_') != 1 AND INSTR(TABLE_NAME, 'auth_') != 1 AND INSTR(TABLE_NAME, 'sys_') != 1",
+                        //+ " AND INSTR(TABLE_NAME, 'qrtz_') != 1 AND INSTR(TABLE_NAME, 'auth_') != 1 AND INSTR(TABLE_NAME, 'sys_') != 1",
+                + " AND INSTR(TABLE_NAME, 'qrtz_') != 1",
                 new BeanPropertyRowMapper<>(DBTable.class));
     }
 

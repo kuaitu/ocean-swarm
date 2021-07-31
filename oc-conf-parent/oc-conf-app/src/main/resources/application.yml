@@ -1,0 +1,38 @@
+server:
+  port: 7071
+
+spring:
+  application:
+    name: oc-conf
+  cloud:
+    nacos:
+      discovery:
+        namespace: public
+        password: nacos
+        server-addr: lin:8848
+        username: nacos
+  datasource:
+    url: jdbc:mysql://lin:3306/ocean?serverTimezone=UTC&characterEncoding=utf-8
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  data:
+    mongodb:
+      host: lin
+      port: 27017
+      database: ocean
+      username: root
+      password:
+
+mybatis-plus:
+  mapper-locations: classpath*:com/lmk/conf/*/mapper/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    banner: true
+    db-config:
+      table-underline: true
+      logic-not-delete-value: 0
+      logic-delete-value: 1
+      logic-delete-field: isDelete

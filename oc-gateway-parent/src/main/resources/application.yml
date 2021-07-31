@@ -18,5 +18,9 @@ spring:
         - id: oc-auth-service
           uri: lb://oc-auth
           predicates:
-            - Path=/biz/**
+            - Path=/auth/**
+        - id: oc-conf-service
+          uri: lb://oc-conf
+          predicates:
+            - Path=/sys/**
 
