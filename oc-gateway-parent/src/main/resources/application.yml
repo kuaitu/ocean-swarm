@@ -1,6 +1,9 @@
 server:
   port: 8081
 spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
   application:
     name: oc-gateway
   cloud:
@@ -18,9 +21,14 @@ spring:
         - id: oc-auth-service
           uri: lb://oc-auth
           predicates:
-            - Path=/auth/**
+            - Path=/oc-auth/**
+          filters:
+            - StripPrefix=1
         - id: oc-conf-service
           uri: lb://oc-conf
           predicates:
-            - Path=/sys/**
+            - Path=/oc-conf/**
+          filters:
+            - StripPrefix=1
+
 
