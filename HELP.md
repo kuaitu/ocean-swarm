@@ -75,43 +75,28 @@ oc-auth-parent
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>ocean</artifactId>
+        <groupId>com.lmk</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.lmk.ocean.auth</groupId>
-    <artifactId>oc-auth-parent</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>oc-auth-parent</name>
-    <description>Demo project for Spring Boot</description>
-    <packaging>pom</packaging>
 
+    <groupId>com.lmk.conf</groupId>
+    <artifactId>oc-conf-parent</artifactId>
+    <packaging>pom</packaging>
     <modules>
-        <module>oc-auth-api</module>
-        <module>oc-auth-app</module>
-        <module>oc-auth-entity</module>
-        <module>oc-auth-rpc</module>
+        <module>oc-conf-api</module>
+        <module>oc-conf-app</module>
+        <module>oc-conf-entity</module>
+        <module>oc-conf-rpc</module>
     </modules>
-    
-    <properties>
-        <java.version>11</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <aliyun-spring-boot.version>1.0.0</aliyun-spring-boot.version>
-        <spring-boot.version>2.3.7.RELEASE</spring-boot.version>
-        <spring-cloud-alibaba.version>2.2.2.RELEASE</spring-cloud-alibaba.version>
-        <spring-cloud.version>Hoxton.RELEASE</spring-cloud.version>
-    </properties>
-    
+
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
-        </dependency>
-    
         <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
         <dependency>
             <groupId>io.springfox</groupId>
@@ -124,123 +109,13 @@ oc-auth-parent
             <artifactId>springfox-swagger-ui</artifactId>
             <version>3.0.0</version>
         </dependency>
-    
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>aliyun-redis-spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.4.2</version>
-        </dependency>
-    
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
-        </dependency>
-    
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.junit.vintage</groupId>
-                    <artifactId>junit-vintage-engine</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>${mybatis-plus-boot-starter.version}</version>
         </dependency>
     </dependencies>
-    
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>aliyun-spring-boot-dependencies</artifactId>
-                <version>${aliyun-spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>${spring-cloud-alibaba.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-    
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>11</source>
-                    <target>11</target>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.3.7.RELEASE</version>
-                <configuration>
-                    <mainClass>com.lmk.ocean.auth.OcAuthParentApplication</mainClass>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>repackage</id>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-
 </project>
 ```
 
@@ -248,29 +123,20 @@ oc-auth-parent
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>com.lmk.ocean.auth</groupId>
-        <artifactId>oc-auth-parent</artifactId>
+        <artifactId>oc-conf-parent</artifactId>
+        <groupId>com.lmk.conf</groupId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.lmk.auth</groupId>
-    <artifactId>oc-auth-api</artifactId>
+    <groupId>com.lmk.conf</groupId>
+    <artifactId>oc-conf-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>oc-auth-api</name>
     <packaging>jar</packaging>
-    <description>Demo project for Spring Boot</description>
-
-    <properties>
-        <java.version>11</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <spring-boot.version>2.3.7.RELEASE</spring-boot.version>
-    </properties>
 
     <dependencies>
         <dependency>
@@ -279,90 +145,11 @@ oc-auth-parent
         </dependency>
 
         <dependency>
-            <groupId>com.lmk.auth</groupId>
-            <artifactId>oc-auth-entity</artifactId>
+            <groupId>com.lmk.conf</groupId>
+            <artifactId>oc-conf-entity</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/io.swagger/swagger-annotations -->
-        <!--<dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-annotations</artifactId>
-            <version>2.0.0-rc2</version>
-        </dependency>-->
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.junit.vintage</groupId>
-                    <artifactId>junit-vintage-engine</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
     </dependencies>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>11</source>
-                    <target>11</target>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.3.7.RELEASE</version>
-                <configuration>
-                    <mainClass>com.lmk.auth.api.OcAuthApiApplication</mainClass>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>repackage</id>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-
 </project>
 ```
 
@@ -370,30 +157,21 @@ oc-auth-parent
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>com.lmk.ocean.auth</groupId>
-        <artifactId>oc-auth-parent</artifactId>
+        <artifactId>oc-conf-parent</artifactId>
+        <groupId>com.lmk.conf</groupId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.lmk.auth</groupId>
-    <artifactId>oc-auth-app</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>oc-auth-app</name>
-    <description>Demo project for Spring Boot</description>
 
-    <properties>
-        <java.version>11</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <aliyun-spring-boot.version>1.0.0</aliyun-spring-boot.version>
-        <spring-boot.version>2.3.7.RELEASE</spring-boot.version>
-        <spring-cloud-alibaba.version>2.2.2.RELEASE</spring-cloud-alibaba.version>
-    </properties>
+    <groupId>com.lmk.conf</groupId>
+    <artifactId>oc-conf-app</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
@@ -402,8 +180,8 @@ oc-auth-parent
         </dependency>
 
         <dependency>
-            <groupId>com.lmk.auth</groupId>
-            <artifactId>oc-auth-api</artifactId>
+            <groupId>com.lmk.conf</groupId>
+            <artifactId>oc-conf-api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
@@ -411,12 +189,6 @@ oc-auth-parent
             <groupId>com.lmk.common.web</groupId>
             <artifactId>oc-common-web</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.4.2</version>
         </dependency>
 
         <dependency>
@@ -441,7 +213,6 @@ oc-auth-parent
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -455,51 +226,12 @@ oc-auth-parent
         </dependency>
     </dependencies>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>aliyun-spring-boot-dependencies</artifactId>
-                <version>${aliyun-spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>${spring-cloud-alibaba.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>11</source>
-                    <target>11</target>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.3.7.RELEASE</version>
-                <configuration>
-                    <mainClass>com.lmk.auth.OcAuthAppApplication</mainClass>
-                </configuration>
                 <executions>
                     <execution>
                         <id>repackage</id>
@@ -511,7 +243,6 @@ oc-auth-parent
             </plugin>
         </plugins>
     </build>
-
 </project>
 ```
 
@@ -519,98 +250,28 @@ oc-auth-parent
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>com.lmk.ocean.auth</groupId>
-        <artifactId>oc-auth-parent</artifactId>
+        <artifactId>oc-conf-parent</artifactId>
+        <groupId>com.lmk.conf</groupId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.lmk.auth</groupId>
-    <artifactId>oc-auth-entity</artifactId>
+    <groupId>com.lmk.conf</groupId>
+    <artifactId>oc-conf-entity</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>oc-auth-entity</name>
-    <description>Demo project for Spring Boot</description>
-
-    <properties>
-        <java.version>11</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <spring-boot.version>2.3.7.RELEASE</spring-boot.version>
-    </properties>
+    <packaging>jar</packaging>
 
     <dependencies>
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.4.2</version>
-        </dependency>
-
         <dependency>
             <groupId>com.lmk.common.entity</groupId>
             <artifactId>oc-common-entity</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.junit.vintage</groupId>
-                    <artifactId>junit-vintage-engine</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
     </dependencies>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>11</source>
-                    <target>11</target>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.3.7.RELEASE</version>
-                <configuration>
-                    <mainClass>com.lmk.auth.entity.OcAuthEntityApplication</mainClass>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>repackage</id>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-
 </project>
 ```
 
@@ -618,38 +279,25 @@ oc-auth-parent
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>com.lmk.ocean.auth</groupId>
-        <artifactId>oc-auth-parent</artifactId>
+        <artifactId>oc-conf-parent</artifactId>
+        <groupId>com.lmk.conf</groupId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.lmk.auth</groupId>
-    <artifactId>oc-auth-rpc</artifactId>
+    <groupId>com.lmk.conf</groupId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>oc-auth-rpc</name>
-    <description>Demo project for Spring Boot</description>
-
-    <properties>
-        <java.version>11</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <spring-boot.version>2.3.7.RELEASE</spring-boot.version>
-    </properties>
+    <artifactId>oc-conf-rpc</artifactId>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.lmk.auth</groupId>
-            <artifactId>oc-auth-api</artifactId>
+            <groupId>com.lmk.conf</groupId>
+            <artifactId>oc-conf-api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
@@ -664,86 +312,34 @@ oc-auth-parent
             <artifactId>oc-common-utils</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-autoconfigure</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.junit.vintage</groupId>
-                    <artifactId>junit-vintage-engine</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
     </dependencies>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>11</source>
-                    <target>11</target>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.3.7.RELEASE</version>
-                <configuration>
-                    <mainClass>com.lmk.auth.rpc.OcAuthRpcApplication</mainClass>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>repackage</id>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-
 </project>
 ```
+
+## 教程目录
+
+- [Spring Cloud 整体架构概览](https://juejin.im/post/5d764f05e51d4561fb04bfd7)
+- [Spring Cloud Eureka：服务注册与发现](https://juejin.im/post/5d78cd53f265da03d55e8351)
+- [Spring Cloud Ribbon：负载均衡的服务调用](https://juejin.im/post/5d7f9006f265da03951a260c)
+- [Spring Cloud Hystrix：服务容错保护](https://juejin.im/post/5d822d27e51d45621479ad92)
+- [Hystrix Dashboard：断路器执行监控](https://juejin.im/post/5d88cb58f265da03e4679eff)
+- [Spring Cloud OpenFeign：基于Ribbon和Hystrix的声明式服务调用](https://juejin.im/post/5d9c85c3e51d45782c23fab6)
+- [Spring Cloud Zuul：API网关服务](https://juejin.im/post/5d9f2dea6fb9a04e3e724067)
+- [Spring Cloud Config：外部集中化配置管理](https://juejin.im/post/5da4709af265da5baa5b06ac)
+- [Spring Cloud Bus：消息总线](https://juejin.im/post/5da70d1351882509615bea34)
+- [Spring Cloud Sleuth：分布式请求链路跟踪](https://juejin.im/post/5dadb4d36fb9a04e02409a7d)
+- [Spring Cloud Consul：服务治理与配置中心](https://juejin.im/post/5db05582f265da4d4c20180f)
+- [Spring Cloud Gateway：新一代API网关服务](https://juejin.im/post/5db6eed6518825644076d0b6)
+- [Spring Boot Admin：微服务应用监控](https://juejin.im/post/5db98a2d518825649c730f81)
+- [Spring Cloud Security：Oauth2使用入门](https://juejin.im/post/5dc013bae51d456e817cec30)
+- [Spring Cloud Security：Oauth2结合JWT使用](https://juejin.im/post/5dc2bec6f265da4d4f65bebe)
+- [Spring Cloud Security：Oauth2实现单点登录](https://juejin.im/post/5dc95a675188256e040db43f)
+- [Spring Cloud Alibaba：Nacos 作为注册中心和配置中心使用](https://juejin.im/post/5dcbf7bc5188250d1f5a78ea)
+- [Spring Cloud Alibaba：Sentinel实现熔断与限流](https://juejin.im/post/5dd29bece51d4561e80f9053)
+- [使用Seata彻底解决Spring Cloud中的分布式事务问题](https://juejin.im/post/5dd53a9d5188255d35425a08)
+- [微服务权限终极解决方案，Spring Cloud Gateway + Oauth2 实现统一认证和鉴权！](https://juejin.im/post/5f0affb6f265da231258a31d)
+- [微服务聚合Swagger文档，这波操作是真的香！](https://juejin.im/post/6854573219916201997)
