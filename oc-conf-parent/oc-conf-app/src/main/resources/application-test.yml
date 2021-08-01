@@ -1,0 +1,11 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        password: nacos
+        server-addr: lin:8848
+        username: nacos
+  datasource:
+    url: jdbc:mysql://lin:3306/ocean?serverTimezone=UTC&characterEncoding=utf-8
+    username: root
+    password: root

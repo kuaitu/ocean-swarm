@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        password: nacos
+        server-addr: lin:8848
+        username: nacos

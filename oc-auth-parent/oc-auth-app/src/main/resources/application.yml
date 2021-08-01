@@ -2,6 +2,8 @@ server:
   port: 7070
 
 spring:
+  profiles:
+    active: prod
   application:
     name: oc-auth
   main:
@@ -13,10 +15,6 @@ spring:
         password: nacos
         server-addr: lin:8848
         username: nacos
-  datasource:
-    url: jdbc:mysql://lin:3306/ocean?serverTimezone=UTC&characterEncoding=utf-8
-    username: root
-    password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
   data:
     mongodb:
@@ -28,6 +26,11 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+
+oc-logging:
+  path: ../logs/
+  filename: oc-auth
+  packagename: com.lmk
 
 mybatis-plus:
   mapper-locations: classpath*:com/lmk/auth/*/mapper/*Mapper.xml

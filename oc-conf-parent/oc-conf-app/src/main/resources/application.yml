@@ -2,6 +2,8 @@ server:
   port: 7071
 
 spring:
+  profiles:
+    active: prod
   application:
     name: oc-conf
   main:
@@ -28,6 +30,11 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+
+oc-logging:
+  path: ../logs/
+  filename: oc-conf
+  packagename: com.lmk
 
 mybatis-plus:
   mapper-locations: classpath*:com/lmk/conf/*/mapper/*Mapper.xml

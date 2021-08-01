@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<springProperty scope="context" name="filepath" source="oc-logging.path" />
+	<springProperty scope="context" name="packagename" source="oc-logging.packagename" />
+	<springProperty scope="context" name="filename" source="oc-logging.filename" defaultValue="application.log" />
+	<springProperty scope="context" name="maxhistory" source="oc-logging.maxhistory" defaultValue="30" />
+	<springProperty scope="context" name="maxfilesize" source="oc-logging.maxfilesize" defaultValue="10MB" />
+
+	<springProfile name="test, sit, prod, uat, remotedev">
+		<appender class="ch.qos.logback.classic.sift.SiftingAppender" name="FILE">
+			<discriminator>
+				<key>type</key>
+				<defaultValue>ocean</defaultValue>
+			</discriminator>
+			<sift>
+				<appender class="ch.qos.logback.core.rolling.RollingFileAppender">
+					<File>${filepath}/${filename}.${type}.log</File>
+					<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+						<fileNamePattern>${filepath}/${filename}.${type}.log.%d.%i.log</fileNamePattern>
+						<maxHistory>${maxhistory}</maxHistory>
+						<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+							<maxFileSize>${maxfilesize}</maxFileSize>
+						</timeBasedFileNamingAndTriggeringPolicy>
+					</rollingPolicy>
+					<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+						<pattern>%d [%thread] %p (%F:%L\)- %m%n</pattern>
+					</encoder>
+				</appender>
+			</sift>
+		</appender>
+
+		<logger level="DEBUG" name="${packagename}" />
+
+		<root level="info">
+			<appender-ref ref="FILE" />
+		</root>
+	</springProfile>
+
+	<springProfile name="default, dev, docker">
+		<appender class="ch.qos.logback.core.ConsoleAppender" name="STDOUT">
+			<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+				<pattern>%d [%cyan(%thread)] %highlight(%p) %gray( (%F:%L\)) %m%n</pattern>
+			</encoder>
+		</appender>
+		<appender class="ch.qos.logback.classic.AsyncAppender" name="ASYNC_CONSOLE">
+			<appender-ref ref="STDOUT" />
+			<includeCallerData>true</includeCallerData>
+		</appender>
+
+		<root level="INFO">
+			<appender-ref ref="ASYNC_CONSOLE" />
+		</root>
+		<logger level="DEBUG" name="${packagename}" />
+	</springProfile>
+</configuration>
