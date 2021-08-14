@@ -3,7 +3,7 @@ server:
 
 spring:
   profiles:
-    active: prod
+    active: dev
   application:
     name: oc-auth
   main:
@@ -31,6 +31,10 @@ oc-logging:
   path: ../logs/
   filename: oc-auth
   packagename: com.lmk
+
+logging:
+  level:
+    com.alibaba.nacos.client.config.impl: WARN
 
 mybatis-plus:
   mapper-locations: classpath*:com/lmk/auth/*/mapper/*Mapper.xml

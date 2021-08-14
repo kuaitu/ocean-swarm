@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Configuration;
  * @since 2021-07-31
  */
 @Configuration
-@ComponentScan("com.lmk.conf.*.rpc")
+@ComponentScan({"com.lmk.conf.*.rpc", "com.lmk.common.utils"})
 @EnableFeignClients("com.lmk.conf.*.rpc")
 public class ConfRpcAutoConfiguration {
 	@Bean

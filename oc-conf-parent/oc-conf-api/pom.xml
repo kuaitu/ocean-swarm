@@ -25,5 +25,17 @@
             <artifactId>oc-conf-entity</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.lmk.auth</groupId>
+            <artifactId>oc-auth-entity</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.lmk.common.entity</groupId>
+            <artifactId>oc-common-entity</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 </project>

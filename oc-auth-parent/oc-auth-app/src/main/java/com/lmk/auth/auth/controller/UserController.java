@@ -4,10 +4,14 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.lmk.auth.auth.api.UserApi;
 import com.lmk.auth.auth.entity.User;
 import com.lmk.auth.auth.service.IUserService;
+import com.lmk.common.enums.ModuleEnum;
+import com.lmk.common.enums.OperateEnum;
 import com.lmk.common.rdbms.vo.PageQuery;
 import com.lmk.common.rdbms.vo.Ret;
 import com.lmk.conf.sys.entity.Dictionary;
 import com.lmk.conf.sys.rpc.DictionaryRpc;
+import com.lmk.conf.sys.rpc.SystemLogRpc;
+import com.lmk.conf.utils.LogUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +38,9 @@ public class UserController implements UserApi{
 	@Autowired
 	private DictionaryRpc dictionaryRpc;
 
+	@Autowired
+	private SystemLogRpc systemLogRpc;
+
 	@ApiOperation("分页查询用户表记录")
 	@Override
 	public Ret<IPage<User>> search(PageQuery<User> q) {
@@ -54,6 +61,7 @@ public class UserController implements UserApi{
 	public Ret<Integer> create(User item) {
 		Assert.notNull(item, "参数不能为空！");
 		service.create(item);
+		LogUtil.addOperateLog(OperateEnum.ADD, ModuleEnum.SYSTEM_LOG, ModuleEnum.SYSTEM_LOG, String.valueOf(item.getId()), "张三", "李四" , "王五");
 		return Ret.ok(item.getId());
 	}
 

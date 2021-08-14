@@ -1,6 +1,8 @@
 package com.lmk.conf.sys.api;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.lmk.common.enums.ModuleEnum;
+import com.lmk.common.enums.OperateEnum;
 import com.lmk.common.rdbms.vo.PageQuery;
 import com.lmk.common.rdbms.vo.Ret;
 import com.lmk.conf.sys.entity.SystemLog;
@@ -48,4 +50,24 @@ public interface SystemLogApi{
 	@GetMapping("/findAll.do")
 	@ResponseBody 
 	Ret<List<SystemLog>> findAll();
+
+    @ApiOperation("添加操作日志")
+	@PostMapping("/addOperateLog.do")
+	@ResponseBody
+    Ret<Void> addOperateLog(
+			@RequestParam("operate") String operate,
+			@RequestParam("module") String module,
+			@RequestParam("subModule") String subModule,
+			@RequestParam(value = "srcId", required = false) String srcId,
+			@RequestParam(value = "agrStr", required = false) String agrStr);
+
+	@ApiOperation("根据类型添加操作日志")
+	@PostMapping("/addOperateLogByType.do")
+	@ResponseBody
+	Ret<Void> addOperateLog(
+			@RequestParam("operate") OperateEnum operate,
+			@RequestParam("module") ModuleEnum module,
+			@RequestParam("subModule") ModuleEnum subModule,
+			@RequestParam(value = "srcId", required = false) String srcId,
+			@RequestParam(value = "agrStr", required = false) String agrStr);
 }

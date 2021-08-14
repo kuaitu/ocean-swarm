@@ -1,5 +1,8 @@
 package com.lmk.conf.sys.service;
 
+import com.lmk.auth.auth.entity.User;
+import com.lmk.common.enums.ModuleEnum;
+import com.lmk.common.enums.OperateEnum;
 import com.lmk.common.web.rdbms.service.BaseService;
 import com.lmk.conf.sys.entity.SystemLog;
 
@@ -43,4 +46,16 @@ public interface ISystemLogService extends BaseService<SystemLog> {
 	 * @param id
 	 */
 	void deleteById(Integer id);
+
+	/**
+	 * 添加操作日志
+	 *
+	 * @param operate
+	 * @param module
+	 * @param subModule
+	 * @param user
+	 * @param srcId
+	 * @param object
+	 */
+    void addOperateLog(OperateEnum operate, ModuleEnum module, ModuleEnum subModule, User user, String srcId, Object... object);
 }

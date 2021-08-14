@@ -6,9 +6,13 @@ oc-logging:
   filename: oc-gateway
   packagename: com.lmk
 
+logging:
+  level:
+    com.alibaba.nacos.client.config.impl: WARN
+
 spring:
   profiles:
-    active: prod
+    active: dev
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
