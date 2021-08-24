@@ -6,6 +6,8 @@ import com.lmk.common.enums.OperateEnum;
 import com.lmk.common.rdbms.vo.PageQuery;
 import com.lmk.common.rdbms.vo.Ret;
 import com.lmk.conf.sys.entity.SystemLog;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
@@ -63,9 +65,16 @@ public interface SystemLogApi{
 
 	@ApiOperation("根据类型添加操作日志")
 	@PostMapping("/addOperateLogByType.do")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name="operate",value="操作",dataType="string", paramType = "query"),
+			@ApiImplicitParam(name="module",value="模块",dataType="string", paramType = "query"),
+			@ApiImplicitParam(name="subModule",value="子模块",dataType="string", paramType = "query"),
+			@ApiImplicitParam(name="srcId",value="模块主键",dataType="string", paramType = "query"),
+			@ApiImplicitParam(name="agrStr",value="日志内容",dataType="string", paramType = "query")
+	})
 	@ResponseBody
 	Ret<Void> addOperateLog(
-			@RequestParam("operate") OperateEnum operate,
+			@RequestParam(value = "operate") OperateEnum operate,
 			@RequestParam("module") ModuleEnum module,
 			@RequestParam("subModule") ModuleEnum subModule,
 			@RequestParam(value = "srcId", required = false) String srcId,
